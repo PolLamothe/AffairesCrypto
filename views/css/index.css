@@ -1,0 +1,148 @@
+@font-face {
+    font-family: Raleway;
+    src: url('../assets/fonts/Raleway-VariableFont_wght.ttf');
+}
+@font-face {
+    font-family: Noto;
+    src: url('../assets/fonts/NotoSansNandinagari-Regular.ttf');
+}
+
+#index_researchParamsInputDiv{
+    display: flex;
+    border-radius: 25px;
+    width: max-content;
+}
+#index_researchDiv{
+    margin-left: 50vw;
+    transform: translateX(-50%);
+    width: max-content;
+    position: relative;
+    border: solid 1px lightgrey;
+    padding: 2vw;
+    border-radius: 50px;
+}
+#index_researchButtonPrice{
+    background-color: transparent;
+    border-radius: 25px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    border: 1px solid grey;
+    width: 2.5vw;
+}
+#index_researchPriceDiv{
+    left: 1vw;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 0.5vw;
+}
+#index_researchButtonSearch{
+    position: relative;
+    background-color: var(--mainColor);
+    border: none;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-top: 5vh;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.index_researchArea{
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background-color: #EEEEEE;
+    border: none;
+    width: 15vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    border-radius: 25px;
+}
+#index_citySuggestDiv{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: solid 1px black;
+    width: 15vw;
+    background-color: white;
+    z-index: 100;
+    text-align: center;
+}
+#index_researchCityDiv{
+    text-align: center;
+    position: relative;
+}
+.Response_SuggestedCityElement{
+    height: 5vh;
+    cursor: pointer;
+}
+.Response_SuggestedCityElement p{
+    cursor: pointer;
+    margin: 0px;
+    position: relative;
+    font-family: raleway;
+    font-size: 14px;
+    top: 2.5vh;
+    transform: translateY(-50%);
+}
+.Response_SuggestedCityElement:hover{
+    background-color: lightgray;
+}
+#index_citySuggestDepartmentButton{
+    border-radius: 50%;
+    float: left;
+    margin-left:0.5vw;
+    aspect-ratio: 1/1;
+}
+.index_citySuggestDepartmentButtonFill{
+    width: 1.5vw;
+    background-color: black;
+    border: none;
+    margin-right: 0.4vw;
+}
+.index_citySuggestDepartmentButtonEmpty{
+    width: 1vw;
+    border: solid black 0.25vw;
+    background-color: transparent;
+    margin-right: 0.5vw
+}
+#index_citySuggestDepartmentDiv p{
+    font-family: Noto;
+    font-weight: 400;
+    font-size: 13px;
+    margin-right: 0.1vw;
+}
+#index_PriceRangeDiv{
+    display: none;
+    position: absolute;
+    background-color: white;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    border: solid 1px black;
+    border-radius: 25px;
+    transform: translateX(-40%);
+}
+#index_researchButtonDiv{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+}
+#index_PriceRangeDiv input{
+    height: 1vw;
+    width: 3vw;
+}
+#index_PriceRangeDiv p{
+    margin: 0px;
+    width: max-content;
+    font-size: 14px;
+    font-family: Raleway;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="./css/mutual.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
+</head>
+<body>
+    <%- include('./templates/header.ejs') %>
+    <div id="index_researchDiv">
+        <div id="index_researchParamsInputDiv">
+            <input type="text" placeholder="Que recherchez-vous ?" class="index_researchArea">
+            <div id="index_researchCityDiv">
+                <input placeholder="Saisissez une ville" id="index_researchCity" class="index_researchArea">
+                <div id="index_citySuggestDiv" style="display: none;">
+                    <div id="index_citySuggestDepartmentDiv">
+                        <div id="index_citySuggestDepartmentButton" class="index_citySuggestDepartmentButtonFill"></div>
+                        <p>Inclure les annonces dans le même département</p>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <div id="index_researchButtonDiv">
+            <button id="index_researchButtonSearch">Rechercher</button>
+            <div id="index_researchPriceDiv">
+                <button id="index_researchButtonPrice">Prix</button>
+                <div id="index_PriceRangeDiv">
+                    <p style="grid-column: 1;">Min :</p>
+                    <input type="text" style="grid-column: 2;">
+                    <p style="grid-column: 3;">€ - Max :</p>
+                    <input type="text" style="grid-column: 4;">
+                    <p style="grid-column: 5;">€</p>
+                </div>
+            </div>
+        </div>      
+        
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+</html>

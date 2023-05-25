@@ -1,0 +1,66 @@
+@font-face {
+    font-family: Specular;
+    src: url('../assets/fonts/SecularOne-Regular.ttf');
+}
+@font-face {
+    font-family: Raleway;
+    src: url('../assets/fonts/Raleway-VariableFont_wght.ttf');
+}
+
+#header_header{
+    width: 100vw;
+    display: flex;
+    vertical-align: middle;
+    text-align: center;
+    align-items: center;
+}
+#header_title{
+    color: var(--mainColor);
+    font-family: Specular;
+    font-size: 35px;
+    margin-right: 8vw;
+    margin-left: 2vw;
+}
+.header_ico{
+    width: 1.7vw;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+.header_text{
+    margin: 0px;
+    font-family: Raleway;
+    font-weight: var(--mainWeight);
+}
+#header_add{
+    width: 2vw;
+    aspect-ratio: 1/1;
+    margin-right: 0.5vw;
+}
+#header_createButton{
+    cursor: pointer;
+    display: flex;
+    background-color: var(--mainColor);
+    border-radius: 25px;
+    border: none;
+    align-items: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+#header_navButton{
+    display: flex;
+}
+#header_titleDiv{
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+#header_createButtonDiv{
+    margin-right: 5vw;
+}
+#header_navButton div{
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}
+#header_createButtonText{
+    font-weight: var(--mainWeight);
+    letter-spacing: 1px;
+}
