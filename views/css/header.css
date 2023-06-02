@@ -20,6 +20,7 @@
     font-size: 35px;
     margin-right: 8vw;
     margin-left: 2vw;
+    cursor: pointer;
 }
 .header_ico{
     width: 1.7vw;
@@ -63,4 +64,12 @@
 #header_createButtonText{
     font-weight: var(--mainWeight);
     letter-spacing: 1px;
+}
+#header_navButton div{
+    cursor: pointer;
+    padding: 0.8vw;
+}
+#header_navButton div:hover{
+    background-color: var(--mainColor50opacity);
+    border-radius: 25px;
 }

@@ -1,5 +1,7 @@
 body{
     margin: 0px;
     --mainColor:#57cc99;
+    --mainColor50opacity: rgba(87, 204, 153,0.5);
+    --mainColor50percent:
     --mainWeight:700;
 }

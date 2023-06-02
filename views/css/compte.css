@@ -1,0 +1,63 @@
+@font-face {
+    font-family: Noto;
+    src: url('../assets/fonts/NotoSansNandinagari-Regular.ttf');
+}
+#compte_profilePicture{
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: 5vw;
+}
+#compte_profileDiv{
+    display: grid;
+    width: 60vw;
+    height: 10vw;
+    margin-left: 20vw;
+    border: 1px solid grey;
+    border-radius: 50px;
+    padding: 2vw;
+    margin-top: 3vw;
+}
+#compte_profileDiv p{
+    width: max-content;
+}
+#compte_PseudoDiv{
+    margin-left: 2vw;
+}
+.compte_infoDiv{
+    display: flex;
+}
+.compte_infoState{
+    margin-left: 1vw;
+}
+#compte_emailAndPhoneDIV{
+    margin-left: 0vw;
+}
+#compte_rate{
+    margin-left: 1vw
+}
+#compte_sendMessageButton{
+    background-color: #1d9bf0;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: -4vw;
+    width: 12vw;
+    height: 2vw;
+    transform: translateX(-30%);
+}
+#compte_profileDiv p{
+    font-family: Noto;
+    font-weight: 600;
+}
+#compte_verificationStatePicture{
+    aspect-ratio: 1/1;
+    width: 2vw;
+    float: right;
+    transform: translateY(35%);
+    margin-left: 0.35vw;
+}
+#compte_emailVerified{
+    float: left;
+}
+#compte_emailVerificationDiv{
+    width: fit-content;
+}

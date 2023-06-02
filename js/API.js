@@ -4,6 +4,20 @@ module.exports = function(express){
     express.get('/',function(req,res){
         res.render('index.ejs')
     })
+    express.get('/mon-compte',async function(req,res){
+        res.render('compte.ejs',{rate:await _function.getUserRate("Pol")})
+    })
+    express.get('/compte/:PSEUDO',async function(req,res){
+        var Pseudo = req.params.PSEUDO
+        res.render('./compte.ejs',{rate : await _function.getUserRate(Pseudo),
+            pseudo : Pseudo,
+            sell_number : await _function.getSellNumber(Pseudo),
+            emailVerified : await _function.getEmailVerificationState(Pseudo)})
+    })
+    express.get('/register',function(req,res){
+        res.render('./register.ejs')
+    })
+
     express.post('/returnCityName', async function(req,res){
         var result = await _function.returnCityName(req.body.userInput)
         var treatedResult = ''

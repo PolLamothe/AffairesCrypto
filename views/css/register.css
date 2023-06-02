@@ -1,0 +1,23 @@
+@font-face {
+    font-family: Noto;
+    src: url('../assets/fonts/NotoSansNandinagari-Regular.ttf');
+}
+@font-face {
+    font-family: Raleway;
+    src: url('../assets/fonts/Raleway-VariableFont_wght.ttf');
+}
+#register_createAccountText{
+    font-family: Raleway;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center  ;
+}
+#register_form{
+    display: grid;
+}
+#register_emailInput{
+    grid-row: 1;
+}
+#register_passwordInput{
+    grid-row: 2;
+}   

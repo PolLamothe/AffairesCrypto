@@ -17,4 +17,25 @@ async function returnCityName(String){
     return result
 }
 
-module.exports = {returnCityName}
+async function getUserRate(Pseudo){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('User')
+    var result = await collection.find({username:Pseudo}).toArray()
+    return result[0].stars
+}
+
+async function getSellNumber(Pseudo){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('User')
+    var result = await collection.find({username:Pseudo}).toArray()
+    return result[0].sell_number
+}
+
+async function getEmailVerificationState(Pseudo){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('User')
+    var result = await collection.find({username:Pseudo}).toArray()
+    return result[0].email_verified
+}
+
+module.exports = {returnCityName,getUserRate,getSellNumber,getEmailVerificationState}
