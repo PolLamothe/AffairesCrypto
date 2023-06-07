@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="/css/mutual.css" rel="stylesheet">
+    <link href="/css/verifyEmail.css" rel="stylesheet">
+</head>
+<body>
+    <%- include('./templates/header.ejs')%>
+    <div id="verifyEmail_globalDiv">
+        <p id="verifyEmail_title">Veuillez entrer le code qui vous a été envoyé par mail</p>
+        <p id="verifyEmail_emailSent">Un code a été envoyé a l'email: <span><%- email %></span></p>
+        <form name="Form" action="/verifyEmail" method="post">
+            <input type="text" pattern="[0-9]+" maxlength="6" id="verifyEmail_codeInput" placeholder="Code" name='code'required>
+        </form>
+        <button id="verifyEmail_validateButton">Valider</button>
+    </div>
+    <script src="/js/verifyEmail.js"></script>
+</body>
+</html>

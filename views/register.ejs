@@ -7,13 +7,43 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href="/css/mutual.css" rel="stylesheet">
     <link href="/css/register.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
 </head>
 <body>
     <%- include('./templates/header.ejs') %>
-    <p id="register_createAccountText">Créer son compte</p>
-    <div id="register_form">
-        <input type="text" placeholder="Adresse email" id="register_emailInput">
-        <input type="text" placeholder="Mot de passe" id="register_passwordInput">
+    <div id="register_div">
+        <p id="register_createAccountText">Créer son compte</p>
+        <div id="register_form">
+            <form name="Form" action="/register" method="post">
+                <input type="text" placeholder="Pseudo" id="register_pseudoInput" name="pseudo">
+                <div style="grid-row: 1;" class="register_exclamationDiv" id="register_exclamationPseudoDiv">
+                </div>
+                <input type="text" placeholder="Adresse email" id="register_emailInput" name="email">
+                <div style="grid-row: 2;" class="register_exclamationDiv" id="register_exclamationEmailDiv">
+                </div>
+                <input type="password" placeholder="Mot de passe" id="register_passwordInput" name="password">
+            </form>
+            <div id="register_passwordRequirementDiv">
+                <div id="register_passwordLength" class="register_passwordRequirementRow1 register_passwordRequirementColumn1">
+                    <img src="/assets/img/redCross.png" id="register_passwordLengthImg">
+                    <p>Au moins 10 caractère</p>
+                </div>
+                <div class="register_passwordRequirementRow1 register_passwordRequirementColumn2">
+                    <img src="/assets/img/redCross.png" id="register_passwordMajImg">
+                    <p>Au moins une Majuscule</p>
+                </div>
+                <div class="register_passwordRequirementRow2 register_passwordRequirementColumn1">
+                    <img src="/assets/img/redCross.png" id="register_passwordMinImg">
+                    <p>Au moins une Minuscule</p>
+                </div>
+                <div class="register_passwordRequirementRow2 register_passwordRequirementColumn2">
+                    <img src="/assets/img/redCross.png" id="register_passwordNumberImg">
+                    <p>Au moins un Chiffre</p>
+                </div>
+            </div>
+            <button id="register_validateButton">Valider</button>
+        </div>
     </div>
+    <script src="./js/register.js"></script>
 </body>
 </html>

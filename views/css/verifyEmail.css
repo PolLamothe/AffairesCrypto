@@ -1,0 +1,64 @@
+@font-face {
+    font-family: Noto;
+    src: url('../assets/fonts/NotoSansNandinagari-Regular.ttf');
+}
+@font-face {
+    font-family: Raleway;
+    src: url('../assets/fonts/Raleway-VariableFont_wght.ttf');
+}
+#verifyEmail_title{
+    font-family: Noto;
+    text-align: center;
+    font-size: 25px;
+    grid-row: 1;
+}
+#verifyEmail_codeInput{
+    width: 10vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1vw;
+    height: 2.5vw;
+    text-align: center;
+    border: solid 1px black;
+    border-radius: 20px;
+    grid-row: 3;
+    font-size: 16px;
+}
+#verifyEmail_globalDiv{
+    border: solid 1px grey;
+    border-radius: 50px;
+    width: 50vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 1.5vw;
+    margin-top: 3vw;
+    display: grid;
+}
+#verifyEmail_emailSent{
+    color: grey;
+    font-family: Raleway;
+    text-align: center;
+    font-size: 18px;
+    grid-row: 2;
+}
+#verifyEmail_validateButton{
+    background-color: var(--buttonColor1);
+    border: none;
+    width: 8vw;
+    height: 2vw;
+    border-radius: 20px;
+   margin-left: 50%;
+   transform: translateX(-50%);
+   margin-top: 2vw;
+    grid-row: 4;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}

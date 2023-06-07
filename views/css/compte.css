@@ -22,6 +22,10 @@
 }
 #compte_PseudoDiv{
     margin-left: 2vw;
+    display: grid;
+}
+#compte_pseudo{
+    grid-row: 1;
 }
 .compte_infoDiv{
     display: flex;
@@ -33,10 +37,10 @@
     margin-left: 0vw;
 }
 #compte_rate{
-    margin-left: 1vw
+    grid-row: 2;
 }
 #compte_sendMessageButton{
-    background-color: #1d9bf0;
+    background-color: var(--buttonColor1);
     border: 1px solid black;
     border-radius: 15px;
     margin-top: -4vw;
@@ -45,7 +49,7 @@
     transform: translateX(-30%);
 }
 #compte_profileDiv p{
-    font-family: Noto;
+    font-family: Raleway;
     font-weight: 600;
 }
 #compte_verificationStatePicture{

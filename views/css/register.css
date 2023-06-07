@@ -10,14 +10,124 @@
     font-family: Raleway;
     font-weight: 600;
     font-size: 30px;
-    text-align: center  ;
+    text-align: center;
+    margin-top: 0px;
 }
 #register_form{
     display: grid;
+    position: relative;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
 }
 #register_emailInput{
-    grid-row: 1;
+    grid-row: 2;
+    margin-top: 1vw;
 }
 #register_passwordInput{
-    grid-row: 2;
+    grid-row: 3;
+    margin-top: 1vw;
 }   
+#register_form input{
+    width: 30vw;
+    height: 2.5vw;
+    border-radius: 30px;
+    border: 1px solid black;
+    text-align: center;
+}
+#register_validateButton{
+    position: relative;
+    border: solid 2px black;
+    border-radius: 30px;
+    width: 50%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2vw;
+    background-color: #add8e6;
+    height: 3vw;
+    font-size: 18px;
+    font-family: Raleway;
+    font-weight: bold;
+    transition: all 0.5s;
+    grid-row: 5;
+}
+#register_div{
+    margin-left: 50vw;
+    transform: translateX(-50%);
+    width: 50vw;
+    padding: 2vw;
+    border: 1px solid grey;
+    border-radius: 25px;
+    margin-top: 5vw;
+}
+#register_validateButton:hover{
+    transform: translateX(-50%) scale(1.1);
+}
+#register_pseudoInput{
+    grid-row: 1;
+}
+#register_passwordRequirementDiv{
+    display: grid;
+    justify-content: center;
+    grid-row: 4;
+}
+#register_passwordRequirementDiv div{
+    display: grid;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 0.5vw;
+    align-items: center;
+}
+#register_passwordRequirementDiv div img{
+    grid-row: 1;
+    aspect-ratio: 1/1;
+    width: 1vw;
+}
+#register_passwordRequirementDiv div p{
+    grid-row: 1;
+    margin: 0px;
+    margin-left: 0.25vw;
+    font-family: Raleway;
+}
+.register_passwordRequirementRow1{
+    grid-row: 1;
+}
+.register_passwordRequirementRow2{
+    grid-row: 2;
+}
+.register_passwordRequirementColumn1{
+    grid-column: 1;
+}
+.register_passwordRequirementColumn2{
+    grid-column: 2;
+    margin-left: 2vw;
+}
+.register_exclamationDiv img{
+    grid-row: 1;
+    grid-column: 1;
+    aspect-ratio: 1/1;
+    width: 2vw;
+    margin-left: 0.25vw;
+    position: absolute;
+}
+.register_exclamationDiv{
+    display: grid;
+    align-items: center;
+    position: absolute;
+    right: 0px;
+    margin-top: -1.5vw;
+}
+.register_exclamationDiv p{
+    grid-column: 2;
+    grid-row: 1;
+    width: max-content;
+    position: absolute;
+    margin: 0px;
+    height: min-content;
+    margin-left: 2.5vw;
+    font-family: Raleway;
+    font-weight: bold;
+    background-color: lightcoral;
+    padding: 0.25vw;
+    border-radius: 10px;
+}
