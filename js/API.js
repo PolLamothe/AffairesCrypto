@@ -90,15 +90,39 @@ module.exports = function(express, nodemailer){
                 secure : true,
                 httpOnly: true,
                 sameSite: 'lax',})
-            res.send('Finish')
+            res.redirect('/compte/'+req.session.pseudo)
         }else{
-            res.send('Problemo')
+            res.send('Test')
         }
     })
-    express.post('/login',function(req,res){
+    express.post('/login',async function(req,res){
         if(req.body.id != undefined && req.body.password != undefined){
             if(req.body.id != '' && req.body.password != ''){
-                
+                if(req.body.id.includes('@')){
+                    if(_function.isEmailAndPasswordValid(req.body.id,req.body.password,'email')){
+                        var username = await _function.getPseudoFromEmail(req.body.id)
+                        var session_ID = await _function.getSessionID(username)
+                        res.cookie('session_ID',session_ID,{
+                            maxAge: 2592000000,
+                            secure : true,
+                            httpOnly: true,
+                            sameSite: 'lax',})
+                        req.session.pseudo = username
+                        res.redirect('/compte/'+await req.session.pseudo)
+                    }
+                }else{
+                    if(_function.isEmailAndPasswordValid(req.body.id,req.body.email,'username')){
+                        var username = req.body.id
+                        var session_ID = await _function.getSessionID(username)
+                        res.cookie('session_ID',session_ID,{
+                            maxAge: 2592000000,
+                            secure : true,
+                            httpOnly: true,
+                            sameSite: 'lax',})
+                        req.session.pseudo = username
+                        res.redirect('/compte/'+await req.session.pseudo)
+                    }
+                }
             }
         }
     })

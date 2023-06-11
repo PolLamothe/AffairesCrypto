@@ -21,7 +21,11 @@ async function getUserRate(Pseudo){
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('User')
     var result = await collection.find({username:Pseudo}).toArray()
-    return result[0].stars
+    if(result[0].hasOwnProperty('stars')){
+        return result[0].stars
+    }else{
+        return undefined
+    }
 }
 
 async function getSellNumber(Pseudo){
@@ -189,9 +193,46 @@ function isEmailValid(email){
     return !email.includes('<') && !email.includes('>')
 }
 
-async function isEmailAndPasswordValid(){
+async function isEmailAndPasswordValid(id, password, emailOrUsername){
+    var {createHash}  = require('crypto');
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('User')
+    if(emailOrUsername == 'email'){
+        var result = await collection.find({
+            email : id,
+            password : createHash('sha-256').update(password).digest('hex')
+        }).toArray()
+        if(result.length != 0){
+            return true
+        }else{
+            return false
+        }
+    }else if(emailOrUsername == 'username'){
+        var result = await collection.find({
+            username : id,
+            password : createHash('sha-256').update(password).digest('hex')
+        }).toArray()
+        if(result.length != 0){
+            return true
+        }else{
+            return false
+        }
+    }
+}
+
+async function getSessionID(username){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('User')
+    var result = await collection.find({username : username}).toArray()
+    console.log(result)
+    return result[0].session_ID
+}
+
+async function getPseudoFromEmail(email){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('User')
+    var result = await collection.find({email : email}).toArray()
+    return result[0].username
 }
 
 module.exports = {
@@ -209,4 +250,7 @@ module.exports = {
     checkConnection,
     isPseudoValid,
     isEmailValid,
+    isEmailAndPasswordValid,
+    getSessionID,
+    getPseudoFromEmail,
 }
