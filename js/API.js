@@ -1,11 +1,13 @@
 module.exports = function(express, nodemailer){
     var _function = require('./function.js')
 
-    express.get('/',function(req,res){
+    express.get('/',async function(req,res){
         res.render('index.ejs')
     })
     express.get('/mon-compte',async function(req,res){
-        res.render('compte.ejs',{rate:await _function.getUserRate("Pol")})
+        if(await _function.checkConnection(req, res) != false){
+            res.redirect('/compte/'+req.session.pseudo)
+        }
     })
     express.get('/compte/:PSEUDO',async function(req,res){
         var Pseudo = req.params.PSEUDO
@@ -24,6 +26,9 @@ module.exports = function(express, nodemailer){
         }else{
             res.redirect('/')
         }
+    })
+    express.get('/login',async function(req,res){
+        res.render('./login.ejs')
     })
 
     express.post('/returnCityName', async function(req,res){
@@ -50,16 +55,20 @@ module.exports = function(express, nodemailer){
             return Math.floor(Math.random() * max);
         }
         var code = getRandomInt(899999) + 100000
-        if(! await _function.doesPseudoExist(req.body.pseudo)){
-            if(_function.isPasswordCorrect(req.body.password)){
-                if(! await _function.doesEmailExist(req.body.email)){
-                    req.session.emailVerificationCode = code
-                    req.session.email = req.body.email
-                    req.session.pseudo = req.body.pseudo
-                    req.session.password = req.body.password
-                    req.session.save()
-                    await _function.sendEmail(nodemailer,req.body.email,'Code de vérification',code.toString())
-                    res.redirect('/verifyEmail')
+        if(req.body.email != undefined && req.body.pseudo != undefined){
+            if(req.body.email != '' && req.body.pseudo != ''){
+                if(!await _function.doesPseudoExist(req.body.pseudo) || _function.isPseudoValid(req.body.pseudo)){
+                    if(_function.isPasswordCorrect(req.body.password) && _function.isEmailValid(req.body.email)){
+                        if(!await _function.doesEmailExist(req.body.email)){
+                            req.session.emailVerificationCode = code
+                            req.session.email = req.body.email
+                            req.session.pseudo = req.body.pseudo
+                            req.session.password = req.body.password
+                            req.session.save()
+                            await _function.sendEmail(nodemailer,req.body.email,'Code de vérification',code.toString())
+                            res.redirect('/verifyEmail')
+                        }
+                    }
                 }
             }
         }
@@ -67,16 +76,30 @@ module.exports = function(express, nodemailer){
     express.post('/verifyEmail',async function(req,res){
         var {createHash}  = require('crypto');
         if(req.body.code == req.session.emailVerificationCode){
+            var session_ID = await _function.generateSessionID()
             var obj = {
                 username : req.session.pseudo,
                 password : createHash('sha-256').update(req.session.password).digest('hex'),
                 email : req.session.email,
                 sell_number : 0,
+                session_ID : session_ID
             }
             await _function.insertData('User',obj)
+            res.cookie('session_ID',session_ID,{
+                maxAge: 2592000000,
+                secure : true,
+                httpOnly: true,
+                sameSite: 'lax',})
             res.send('Finish')
         }else{
             res.send('Problemo')
+        }
+    })
+    express.post('/login',function(req,res){
+        if(req.body.id != undefined && req.body.password != undefined){
+            if(req.body.id != '' && req.body.password != ''){
+                
+            }
         }
     })
 }
