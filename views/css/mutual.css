@@ -6,3 +6,11 @@ body{
     --mainWeight:700;
     --buttonColor1: #1DC0F0
 }
+@font-face {
+    font-family: Raleway;
+    src: url('../assets/fonts/Raleway-VariableFont_wght.ttf');
+}
+@font-face {
+    font-family: Noto;
+    src: url('../assets/fonts/NotoSansNandinagari-Regular.ttf');
+}

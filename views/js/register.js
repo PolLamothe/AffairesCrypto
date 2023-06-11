@@ -1,3 +1,9 @@
+function containsPseudo(pseudo){
+    return !pseudo.includes('<') && !pseudo.includes('>') && !pseudo.includes('@')
+}
+function containsEmail(pseudo){
+    return !pseudo.includes('<') && !pseudo.includes('>')
+}
 function isPasswordCorrect(){
     const number = ['1','2','3','4','5','6','7','8','9','0']
     var letterMinTemp = 'abcdefghijklmnopqrstuvwxyz'
@@ -65,22 +71,40 @@ $('#register_validateButton').on('click',function(){
     }
 })
 $('#register_pseudoInput').on('input',async function(){
-    $.ajax({
+    var containsState = false
+    if(!containsPseudo($('#register_pseudoInput').val())){
+        $('#register_exclamationPseudoDiv').append(
+            '<img src="/assets/img/exclamation.png" id="API_pseudoExistImg"><p>Votre Pseudo ne peut pas contenir les caractères suivants: @, <, ></p>'
+        ) 
+        containsState = true               
+    }else{
+        containsState = false
+        $('#register_exclamationPseudoDiv').empty()
+    }
+    await $.ajax({
         type:'POST',
         url:'/doesThePseudoExist',
-        data:{
-            pseudo:$('#register_pseudoInput').val()
-        },
+        data:{pseudo:$('#register_pseudoInput').val()},
         success : function(output){
             if(output.existState){
                 $('#register_exclamationPseudoDiv').append(output.content)                
-            }else{
+            }else if(!containsState){
                 $('#register_exclamationPseudoDiv').empty()
             }
         }
     })
 })
 $('#register_emailInput').on('input',async function(){
+    var containsState = false
+    if(!containsEmail($('#register_emailInput').val())){
+        $('#register_exclamationEmailDiv').append(
+            '<img src="/assets/img/exclamation.png" id="API_pseudoExistImg"><p>Votre Email ne peut pas contenir les caractères suivants: <, > </p>'
+        ) 
+        containsState = true               
+    }else{
+        containsState = false
+        $('#register_exclamationEmailDiv').empty()
+    }
     $.ajax({
         type:'POST',
         url:'/doesTheEmailExist',
@@ -90,7 +114,7 @@ $('#register_emailInput').on('input',async function(){
         success : function(output){
             if(output.existState){
                 $('#register_exclamationEmailDiv').append(output.content)                
-            }else{
+            }else if(!containsState){
                 $('#register_exclamationEmailDiv').empty()
             }
         }
