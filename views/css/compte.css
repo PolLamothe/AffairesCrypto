@@ -21,14 +21,18 @@
     width: max-content;
 }
 #compte_PseudoDiv{
-    margin-left: 2vw;
     display: grid;
+}
+#compte_PseudoDiv p{
+    margin: 0px;
+    height: fit-content;
 }
 #compte_pseudo{
     grid-row: 1;
 }
 .compte_infoDiv{
     display: flex;
+    height: fit-content;
 }
 .compte_infoState{
     margin-left: 1vw;
@@ -64,4 +68,12 @@
 }
 #compte_emailVerificationDiv{
     width: fit-content;
+}
+#compte_infoDivDiv{
+    grid-row: 1/2;
+    grid-column: 4;
+    display: grid;
+}
+#compte_infoDivDiv p{
+    margin: 0px;
 }

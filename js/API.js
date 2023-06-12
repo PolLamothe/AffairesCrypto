@@ -5,7 +5,9 @@ module.exports = function(express, nodemailer){
         res.render('index.ejs')
     })
     express.get('/mon-compte',async function(req,res){
-        if(await _function.checkConnection(req, res) != false){
+        if(req.session.pseudo != undefined){
+            res.redirect('/compte/'+req.session.pseudo)
+        }else if(await _function.checkConnection(req, res) != false){
             res.redirect('/compte/'+req.session.pseudo)
         }
     })
@@ -82,11 +84,11 @@ module.exports = function(express, nodemailer){
                 password : createHash('sha-256').update(req.session.password).digest('hex'),
                 email : req.session.email,
                 sell_number : 0,
-                session_ID : session_ID
+                session_ID : {value : session_ID,expires : generateNewSession_IDExpiresDate()}
             }
             await _function.insertData('User',obj)
             res.cookie('session_ID',session_ID,{
-                maxAge: 2592000000,
+                expires: generateNewSession_IDExpiresDate(),
                 secure : true,
                 httpOnly: true,
                 sameSite: 'lax',})
@@ -96,14 +98,15 @@ module.exports = function(express, nodemailer){
         }
     })
     express.post('/login',async function(req,res){
+        var {createHash}  = require('crypto');
         if(req.body.id != undefined && req.body.password != undefined){
             if(req.body.id != '' && req.body.password != ''){
                 if(req.body.id.includes('@')){
-                    if(_function.isEmailAndPasswordValid(req.body.id,req.body.password,'email')){
+                    if(_function.isEmailAndPasswordValid(req.body.id,req.body.password,'email',{createHash})){
                         var username = await _function.getPseudoFromEmail(req.body.id)
                         var session_ID = await _function.getSessionID(username)
-                        res.cookie('session_ID',session_ID,{
-                            maxAge: 2592000000,
+                        await res.cookie('session_ID',session_ID,{
+                            expires : await _function.getExpiresSession_ID(username),
                             secure : true,
                             httpOnly: true,
                             sameSite: 'lax',})
@@ -111,11 +114,11 @@ module.exports = function(express, nodemailer){
                         res.redirect('/compte/'+await req.session.pseudo)
                     }
                 }else{
-                    if(_function.isEmailAndPasswordValid(req.body.id,req.body.email,'username')){
+                    if(_function.isEmailAndPasswordValid(req.body.id,req.body.password,'username',{createHash})){
                         var username = req.body.id
                         var session_ID = await _function.getSessionID(username)
                         res.cookie('session_ID',session_ID,{
-                            maxAge: 2592000000,
+                            expires : await _function.getExpiresSession_ID(username),
                             secure : true,
                             httpOnly: true,
                             sameSite: 'lax',})

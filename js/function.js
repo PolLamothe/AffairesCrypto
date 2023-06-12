@@ -1,6 +1,4 @@
 const MongoClient = require('mongodb').MongoClient
-const mongodb = require('mongodb')
-const fs = require('fs');
 
 async function getClient(){
     const url = 'mongodb://127.0.0.1:27017'
@@ -172,15 +170,27 @@ async function checkConnection(req, res){
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('User')
     if(req.cookies.session_ID != undefined){
-        var result = await collection.find({session_ID: req.cookies.session_ID}).toArray()
+        var result = await collection.find({"session_ID.value" : req.cookies.session_ID.value}).toArray()
         if(result.length == 0){
-            res.redirect('/register')
+            res.redirect('/login')
             return false
         }else{
-            req.session.pseudo = result[0].username
+            if(result[0].session_ID.expires < req.cookies.session_ID.value){
+                res.redirect('/login')
+            }else if(result[0].session_ID.expires < new Date()){//si l'id de session actuel est périmé
+                var query = {"session_ID.expires" : result[0].session_ID.expire}
+                var newValues = {$set: {
+                    "session_ID.expires":generateNewSession_IDExpiresDate(),
+                    "session_ID.value":await generateSessionID()
+                }}
+                await changeDBValue('User',query,newValues)
+            }else{
+                req.session.pseudo = result[0].username
+                return true
+            }
         }
     }else{
-        res.redirect('/register')
+        res.redirect('/login')
         return false
     }
 }
@@ -193,8 +203,7 @@ function isEmailValid(email){
     return !email.includes('<') && !email.includes('>')
 }
 
-async function isEmailAndPasswordValid(id, password, emailOrUsername){
-    var {createHash}  = require('crypto');
+async function isEmailAndPasswordValid(id, password, emailOrUsername, {createHash}){
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('User')
     if(emailOrUsername == 'email'){
@@ -224,7 +233,6 @@ async function getSessionID(username){
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('User')
     var result = await collection.find({username : username}).toArray()
-    console.log(result)
     return result[0].session_ID
 }
 
@@ -233,6 +241,23 @@ async function getPseudoFromEmail(email){
     var collection = client.db('AffairesCrypto').collection('User')
     var result = await collection.find({email : email}).toArray()
     return result[0].username
+}
+
+async function getExpiresSession_ID(pseudo){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('User')
+    var result = await collection.find({username : pseudo}).toArray()
+    return result[0].session_ID.expires
+}
+
+async function changeDBValue(collection, query, newValues){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection(collection)
+    await collection.update(query, newValues)
+}
+
+function generateNewSession_IDExpiresDate(){
+    return new Date(Date.now() + 2592000000)
 }
 
 module.exports = {
@@ -253,4 +278,7 @@ module.exports = {
     isEmailAndPasswordValid,
     getSessionID,
     getPseudoFromEmail,
+    getExpiresSession_ID,
+    changeDBValue,
+    generateNewSession_IDExpiresDate,
 }
