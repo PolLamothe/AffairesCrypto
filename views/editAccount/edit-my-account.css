@@ -1,0 +1,25 @@
+hr{
+    margin: 0px;
+}
+#edit_navDiv{
+    width: 20vw;
+    border: solid 1px black;
+    margin-top: -1px;
+    float: left;
+}
+.edit_navButton{
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    border: none;
+    height: 3vw;
+    font-size: 20px;
+}
+#edit_content{
+    margin-top: -1px;
+    width: 80vw;
+    height: 100px;
+    right: 0px;
+    background-color: black;
+    position: absolute;
+}

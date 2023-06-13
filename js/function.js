@@ -166,6 +166,12 @@ async function doesSession_IDExist(session_ID){
     }
 }
 
+async function changeDBValue(collection, query, newValues){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection(collection)
+    await collection.update(query, newValues)
+}
+
 async function checkConnection(req, res){
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('User')
@@ -248,12 +254,6 @@ async function getExpiresSession_ID(pseudo){
     var collection = client.db('AffairesCrypto').collection('User')
     var result = await collection.find({username : pseudo}).toArray()
     return result[0].session_ID.expires
-}
-
-async function changeDBValue(collection, query, newValues){
-    var client = await getClient()
-    var collection = client.db('AffairesCrypto').collection(collection)
-    await collection.update(query, newValues)
 }
 
 function generateNewSession_IDExpiresDate(){

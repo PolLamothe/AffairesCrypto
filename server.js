@@ -17,5 +17,6 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs');//déclarer le moteur de rendue des fichiers .ejs
 app.use(express.static(__dirname + '/views')) //en sah je sais plus a quoi ça sert
 
-require('./js/API.js')(app, nodemailer)
+require('./js/API-post.js')(app, nodemailer)
+require('./js/API-get.js')(app, nodemailer)
 app.listen(3000)

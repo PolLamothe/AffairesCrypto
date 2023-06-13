@@ -23,11 +23,11 @@
         </div>
         <div id="compte_infoDivDiv">
             <div class="compte_infoDiv" style="grid-row: 1;">
-                <p class="compte_infoText">Email:</p>
-                <p class="compte_infoState">Privé</p>
+                <p class="compte_infoText">Email :</p>
+                <p class="compte_infoState"> Privé</p>
             </div>
             <div class="compte_infoDiv" style="grid-row: 2;">
-                <p class="compte_infoText">Téléphone:</p>
+                <p class="compte_infoText">Téléphone :</p>
                 <% if(phone_number == undefined){ %>
                     <p class="compte_infoState">Non renseigné</p>
                 <% }else{ %>
@@ -37,6 +37,10 @@
         </div>
         <p id="compte_saleNumber" style="grid-column: 9;grid-row: 1;"><%= sell_number %> ventes</p>
         <button style="grid-column: 9;grid-row: 2;" id="compte_sendMessageButton">Envoyer un message</button>
+        <% if(ownAccount){ %>
+            <%- include('./templates/compte_editButton.ejs') %>
+        <% } %>
     </div>
+    <script src="/js/compte.js"></script>
 </body>
 </html>

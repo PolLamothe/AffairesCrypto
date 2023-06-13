@@ -1,38 +1,6 @@
 module.exports = function(express, nodemailer){
     var _function = require('./function.js')
-
-    express.get('/',async function(req,res){
-        res.render('index.ejs')
-    })
-    express.get('/mon-compte',async function(req,res){
-        if(req.session.pseudo != undefined){
-            res.redirect('/compte/'+req.session.pseudo)
-        }else if(await _function.checkConnection(req, res) != false){
-            res.redirect('/compte/'+req.session.pseudo)
-        }
-    })
-    express.get('/compte/:PSEUDO',async function(req,res){
-        var Pseudo = req.params.PSEUDO
-        res.render('./compte.ejs',{rate : await _function.getUserRate(Pseudo),
-            pseudo : Pseudo,
-            sell_number : await _function.getSellNumber(Pseudo),
-            phone_number : await _function.getPhoneNumber(Pseudo),
-        })
-    })
-    express.get('/register',function(req,res){
-        res.render('./register.ejs')
-    })
-    express.get('/verifyEmail',function(req,res){
-        if (req.session.email != undefined || req.session.emailVerificationCode == undefined){
-            res.render('verifyEmail.ejs',{email:req.session.email})
-        }else{
-            res.redirect('/')
-        }
-    })
-    express.get('/login',async function(req,res){
-        res.render('./login.ejs')
-    })
-
+    
     express.post('/returnCityName', async function(req,res){
         var result = await _function.returnCityName(req.body.userInput)
         var treatedResult = ''
@@ -84,11 +52,11 @@ module.exports = function(express, nodemailer){
                 password : createHash('sha-256').update(req.session.password).digest('hex'),
                 email : req.session.email,
                 sell_number : 0,
-                session_ID : {value : session_ID,expires : generateNewSession_IDExpiresDate()}
+                session_ID : {value : session_ID,expires : _function.generateNewSession_IDExpiresDate()}
             }
             await _function.insertData('User',obj)
             res.cookie('session_ID',session_ID,{
-                expires: generateNewSession_IDExpiresDate(),
+                expires: _function.generateNewSession_IDExpiresDate(),
                 secure : true,
                 httpOnly: true,
                 sameSite: 'lax',})

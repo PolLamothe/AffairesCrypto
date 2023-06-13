@@ -16,6 +16,7 @@
     border-radius: 50px;
     padding: 2vw;
     margin-top: 3vw;
+    position: relative;
 }
 #compte_profileDiv p{
     width: max-content;
@@ -76,4 +77,16 @@
 }
 #compte_infoDivDiv p{
     margin: 0px;
+}
+#compteEditButton_MainButton{
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4180f5;
+    border: solid 1px grey;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 0.8vw;
+    margin-bottom: 1vw;
 }
