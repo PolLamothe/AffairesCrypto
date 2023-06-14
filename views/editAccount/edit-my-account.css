@@ -20,6 +20,13 @@ hr{
     width: 80vw;
     height: 100px;
     right: 0px;
-    background-color: black;
     position: absolute;
+}
+#edit_changePseudoValidate{
+    width: 2vw;
+    aspect-ratio: 1/1;
+    filter: invert(50%);
+    border: solid 1px grey;
+    padding: 5vw;
+    border-radius: 50%;
 }
