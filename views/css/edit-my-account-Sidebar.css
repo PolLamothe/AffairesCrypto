@@ -1,0 +1,42 @@
+@font-face {
+    font-family: Raleway;
+    src: url('../assets/fonts/Raleway-VariableFont_wght.ttf');
+}
+@font-face {
+    font-family: Noto;
+    src: url('../assets/fonts/NotoSansNandinagari-Regular.ttf');
+}
+hr{
+    margin: 0px;
+}
+#Sidebar_navDiv{
+    width: 20vw;
+    border: solid 1px black;
+    margin-top: -1px;
+    float: left;
+    height: 91.5vh;
+    border-bottom: 0px;
+    background-color: rgb(245, 245, 245);
+}
+.Sidebar_navButton{
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    border-bottom: solid 1px black;
+    height: 3vw;
+    font-size: 20px;
+}
+#edit_content{
+    margin-top: -1px;
+    width: 60vw;
+    height: 91.5vh;
+    right: 20vw;
+    position: absolute;
+    border-right: solid 1px black;
+}
+#Sidebar_bottomButton{
+    border-bottom: 0px;
+}

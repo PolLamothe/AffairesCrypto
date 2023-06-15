@@ -1,0 +1,16 @@
+<link href="../../css/edit-my-account/personalize.css" rel="stylesheet">
+<div id="edit_content">
+    <div id="edit_changePseudoDiv" class="editDiv">
+        <p id="edit_changePseudoText" class="edit_Text1">Modifier votre nom d'utilisateur</p>
+        <input type="text" id="edit_changePseudoInput" placeholder="<%- pseudo %>">
+        <button id="edit_ChangePseudoValidate" class="edit_validateButton">Valider</button>
+    </div>
+    <div id="edit_changeProfilePictureDiv" class="editDiv">
+        <p id="edit_changeProfilePictureText" class="edit_Text1">Modifier votre photo de profile</p>
+        <img src="../../assets/default.webp" id="edit_changeProfilePictureImg">
+        <input type="file" id="edit_changeProfilePictureInput" name="ProfilePicture" accept=".jpg, .jpeg, .png">
+        <label for="edit_changeProfilePictureInput" id="edit_changeProfilePictureLabel">Choisissez un fichier</label>
+        <button id="edit_ChangePseudoValidate" class="edit_validateButton">Valider</button>
+    </div>
+</div>
+<script src="../../js/edit-my-account/personalize.js"></script>

@@ -3,7 +3,8 @@ body{
     --mainColor:#57cc99;
     --mainColor50opacity: rgba(87, 204, 153,0.5);
     --mainWeight:700;
-    --buttonColor1: #1DC0F0
+    --buttonColor1: #1DADF0;
+    --buttonColor2: #4180f5
 }
 @font-face {
     font-family: Raleway;

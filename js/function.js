@@ -260,6 +260,20 @@ function generateNewSession_IDExpiresDate(){
     return new Date(Date.now() + 2592000000)
 }
 
+function editMyAccountRender(res, target, pseudo){
+    res.render('./edit-my-account.ejs',{
+        target:target,
+        pseudo:pseudo,
+    })
+}
+
+async function getEmailFromPseudo(username){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('User')
+    var result = await collection.find({username:username}).toArray()
+    return result[0].email
+}
+
 module.exports = {
     returnCityName,
     getUserRate,
@@ -281,4 +295,6 @@ module.exports = {
     getExpiresSession_ID,
     changeDBValue,
     generateNewSession_IDExpiresDate,
+    editMyAccountRender,
+    getEmailFromPseudo,
 }

@@ -43,6 +43,13 @@ module.exports = function(express, nodemailer){
         res.render('./login.ejs')
     })
     express.get('/edit-my-account',async function(req,res){
-        res.render('./editAccount/edit-my-account.ejs')
+        
+        if(_function.checkConnection(req, res) != false){
+            //var pseudo = req.session.pseudo
+            //var email = await _function.getEmailFromPseudo(pseudo)
+            var pseudo = 'Pol'
+            var email = 'lamothepol@gmail.com'
+            _function.editMyAccountRender(res,'personalize',pseudo)
+        }
     })
 }
