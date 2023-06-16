@@ -260,10 +260,11 @@ function generateNewSession_IDExpiresDate(){
     return new Date(Date.now() + 2592000000)
 }
 
-function editMyAccountRender(res, target, pseudo){
+function editMyAccountRender(res, target, pseudo, profilePicture){
     res.render('./edit-my-account.ejs',{
         target:target,
         pseudo:pseudo,
+        profilePicture:profilePicture
     })
 }
 
@@ -272,6 +273,40 @@ async function getEmailFromPseudo(username){
     var collection = client.db('AffairesCrypto').collection('User')
     var result = await collection.find({username:username}).toArray()
     return result[0].email
+}
+
+function isImageValid(file){
+    var validMime = ['image/png','image/jpg','image/jpeg']
+    if(file.size < 5000000){
+        if(validMime.indexOf(file.mimetype) == -1){
+            return true
+        }
+    }
+    return false
+}
+
+async function storeFileAsBSON(file, params, paramsValue, collection){
+    const fs = require('fs');
+    const mongodb = require('mongodb');
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection(collection)
+    const filePath = file.path;
+    const fileData = fs.readFileSync(filePath);
+    collection.updateOne({[params]:paramsValue}, {$set:{
+        profilePicture: new mongodb.Binary(fileData)
+    }})
+    fs.unlinkSync(filePath);
+}
+
+async function getProfilePicture(pseudo){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('User')
+    var result = await collection.find({username : pseudo}).toArray()
+    if(result[0].profilePicture == undefined){
+        return null
+    }else{
+        return result[0].profilePicture.buffer.toString('base64')
+    }
 }
 
 module.exports = {
@@ -297,4 +332,7 @@ module.exports = {
     generateNewSession_IDExpiresDate,
     editMyAccountRender,
     getEmailFromPseudo,
+    isImageValid,
+    storeFileAsBSON,
+    getProfilePicture,
 }

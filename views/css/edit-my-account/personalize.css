@@ -35,6 +35,8 @@
     grid-row: 1;
     width: 4vw;
     border: solid 2px black;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 .editDiv{
     display: grid;
@@ -58,4 +60,7 @@
     border-radius: 15px;
     width: 8vw;
     text-align: center;
+}
+#edit_ChangeProifileValidate{
+    grid-row: 1;
 }

@@ -7,10 +7,14 @@
     </div>
     <div id="edit_changeProfilePictureDiv" class="editDiv">
         <p id="edit_changeProfilePictureText" class="edit_Text1">Modifier votre photo de profile</p>
-        <img src="../../assets/default.webp" id="edit_changeProfilePictureImg">
+        <% if(profilePicture == null){ %>
+            <img src="../../assets/default.webp" id="edit_changeProfilePictureImg">
+        <% }else{ %>
+            <img src="data:image/png;base64, <%- profilePicture %>" id="edit_changeProfilePictureImg">
+        <% } %>
         <input type="file" id="edit_changeProfilePictureInput" name="ProfilePicture" accept=".jpg, .jpeg, .png">
         <label for="edit_changeProfilePictureInput" id="edit_changeProfilePictureLabel">Choisissez un fichier</label>
-        <button id="edit_ChangePseudoValidate" class="edit_validateButton">Valider</button>
+        <button id="edit_ChangeProifileValidate" class="edit_validateButton">Valider</button>
     </div>
 </div>
 <script src="../../js/edit-my-account/personalize.js"></script>

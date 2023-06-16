@@ -12,7 +12,11 @@
 <body>
     <%- include('./templates/header.ejs') %>
     <div id="compte_profileDiv">
-        <img src="/assets/default.webp" id="compte_profilePicture" style="grid-column: 1;grid-row: 1;">
+        <% if(profilePicture == null){ %>
+            <img src="/assets/default.webp" id="compte_profilePicture" style="grid-column: 1;grid-row: 1;">
+        <% }else{ %>
+            <img src="data:image/png;base64, <%- profilePicture %>" id="compte_profilePicture" style="grid-column: 1;grid-row: 1;">
+        <% } %>
         <div style="grid-column: 2/4;grid-row: 1/2;" id="compte_PseudoDiv">
             <p id="compte_pseudo"><%= pseudo %></p>
             <% if(rate == undefined){ %>

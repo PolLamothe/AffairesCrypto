@@ -27,6 +27,7 @@ module.exports = function(express, nodemailer){
             sell_number : await _function.getSellNumber(Pseudo),
             phone_number : await _function.getPhoneNumber(Pseudo),
             ownAccount : ownAccount,
+            profilePicture: await _function.getProfilePicture(Pseudo),
         })
     })
     express.get('/register',function(req,res){
@@ -47,9 +48,9 @@ module.exports = function(express, nodemailer){
         if(_function.checkConnection(req, res) != false){
             //var pseudo = req.session.pseudo
             //var email = await _function.getEmailFromPseudo(pseudo)
-            var pseudo = 'Pol'
-            var email = 'lamothepol@gmail.com'
-            _function.editMyAccountRender(res,'personalize',pseudo)
+            var pseudo = 'Mikel'
+            var email = 'pol.drackack@gmail.com'
+            _function.editMyAccountRender(res,'personalize',pseudo, await _function.getProfilePicture(pseudo))
         }
     })
 }
