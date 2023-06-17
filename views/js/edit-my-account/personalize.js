@@ -22,3 +22,13 @@ $('#edit_ChangeProifileValidate').on('click',function(){
         }
     })
 })
+
+$('#edit_ChangePseudoValidate').on('click',function(){
+    $.ajax({
+        type:'POST',
+        url:'/changePseudo',
+        data:{
+            pseudo : $('#edit_changePseudoInput').val()
+        }
+    })
+})

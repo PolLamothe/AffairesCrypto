@@ -1,0 +1,44 @@
+#postAnnonce_mainContentDiv{
+    width: 80vw;
+    margin-left: 10vw;
+    border: solid 1px grey;
+    display: grid;
+    border-radius: 30px;
+}
+.postAnnonce_Picture{
+    width: 7vw;
+    aspect-ratio: 1/1;
+    grid-row: 2;
+}
+#postAnnonce_Title{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    height: 2vw;
+    grid-row: 1;    
+    width: 20vw;
+    text-align: center;                         
+    font-size: 18px;
+    margin-top: 2vw;
+    border-radius: 25px;                                                                            
+    border: solid 1px black;
+}
+.postAnnonce_PictureText{
+    font-family: Noto;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.postAnnonce_PictureDiv{
+    width: fit-content;
+    border: solid 1px grey;
+    padding: 1vw;
+    border-radius: 25px;
+}
+#postAnnonce_allPictureDiv{
+    display: grid;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2vw;   
+}

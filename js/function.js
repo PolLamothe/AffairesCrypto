@@ -202,11 +202,19 @@ async function checkConnection(req, res){
 }
 
 function isPseudoValid(pseudo){
-    return !pseudo.includes('<') && !pseudo.includes('>') && !pseudo.includes('@')
+    if(pseudo != ''){
+        return !pseudo.includes('<') && !pseudo.includes('>') && !pseudo.includes('@')
+    }else{
+        return false
+    }
 }
 
 function isEmailValid(email){
-    return !email.includes('<') && !email.includes('>')
+    if(email != ''){
+        return !email.includes('<') && !email.includes('>')
+    }else{
+        return false
+    }
 }
 
 async function isEmailAndPasswordValid(id, password, emailOrUsername, {createHash}){
@@ -309,6 +317,14 @@ async function getProfilePicture(pseudo){
     }
 }
 
+async function changePseudo(oldPseudo, newPseudo){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('User')
+    collection.updateOne({username: oldPseudo},{$set:{
+        username: newPseudo
+    }})
+}
+
 module.exports = {
     returnCityName,
     getUserRate,
@@ -335,4 +351,5 @@ module.exports = {
     isImageValid,
     storeFileAsBSON,
     getProfilePicture,
+    changePseudo,
 }
