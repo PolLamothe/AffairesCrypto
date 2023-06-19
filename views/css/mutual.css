@@ -4,7 +4,8 @@ body{
     --mainColor50opacity: rgba(87, 204, 153,0.5);
     --mainWeight:700;
     --buttonColor1: #1DADF0;
-    --buttonColor2: #4180f5
+    --buttonColor2: #4180f5;
+    overflow-x: hidden;
 }
 @font-face {
     font-family: Raleway;

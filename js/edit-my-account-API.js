@@ -9,6 +9,7 @@ module.exports = function(express, upload){
         if(_function.isPseudoValid(req.body.pseudo)){
             if(! await _function.doesPseudoExist(req.body.pseudo)){
                 await _function.changePseudo(req.session.pseudo, req.body.pseudo)
+                req.session.pseudo = req.body.pseudo
             }
         }
     })

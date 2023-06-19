@@ -5,7 +5,7 @@
 #compte_profilePicture{
     aspect-ratio: 1/1;
     border-radius: 50%;
-    width: 5vw;
+    width: 8vw;
     object-fit: cover;
 }
 #compte_profileDiv{
@@ -47,7 +47,7 @@
 }
 #compte_sendMessageButton{
     background-color: var(--buttonColor1);
-    border: 1px solid black;
+    border: none;
     border-radius: 15px;
     margin-top: -4vw;
     width: 12vw;

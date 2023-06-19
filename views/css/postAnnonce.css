@@ -4,23 +4,29 @@
     border: solid 1px grey;
     display: grid;
     border-radius: 30px;
+    margin-top: 3vw;
+    margin-bottom: 2vw;
 }
 .postAnnonce_Picture{
-    width: 7vw;
+    width: 15vw;
     aspect-ratio: 1/1;
     grid-row: 2;
+    object-fit: contain;
+    border-radius: 20px;
 }
 #postAnnonce_Title{
-    margin-left: 50%;
-    transform: translateX(-50%);
     height: 2vw;
     grid-row: 1;    
     width: 20vw;
     text-align: center;                         
     font-size: 18px;
-    margin-top: 2vw;
     border-radius: 25px;                                                                            
     border: solid 1px black;
+}
+#postAnnonce_TitleGlobalDiv{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2vw;
 }
 .postAnnonce_PictureText{
     font-family: Noto;
@@ -35,10 +41,142 @@
     border: solid 1px grey;
     padding: 1vw;
     border-radius: 25px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    position: relative;
 }
 #postAnnonce_allPictureDiv{
     display: grid;
     margin-left: 50%;
+    width: fit-content;
     transform: translateX(-50%);
     margin-top: 2vw;   
+}
+.postAnnonce_invisibleInput{
+    position: absolute;
+    top: -100vh;
+}
+#postAnnonce_descriptionInput{
+    width: 30vw;
+    resize: none;
+    font-size: 16px;
+    border: solid 1px black;
+    border-radius: 20px;
+    padding-left: 1vw;
+    height: 8vw;
+    margin-left: 30vw;
+    transform: translateX(-50%);
+    font-family: 'Helvetica', Arial, Lucida Grande, sans-serif;
+}
+#postAnnonce_descriptionGlobalDiv{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2vw;
+    width: fit-content;
+}
+#postAnnonce_priceInput{
+    width: 10vw;
+    border-radius: 15px;
+    border: solid 1px black;
+    height: 2vw;
+    font-size: 16px;
+    padding-left: 1vw;
+    grid-row: 1;
+}
+#postAnnonce_Line1{
+    display:grid;
+    margin-top: 1.5vw;
+    margin-left: 25%;
+}
+#postAnnonce_researchCityDiv{
+    grid-row: 1;
+    margin-right: 15vw;
+}
+#postAnnonce_citySuggestDiv{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: solid 1px black;
+    width: 15vw;
+    background-color: white;
+    z-index: 100;
+    text-align: center;
+}
+#postAnnonce_researchCityDiv{
+    text-align: center;
+    position: relative;
+}
+.Response_SuggestedCityElement{
+    height: 5vh;
+    cursor: pointer;
+}
+.Response_SuggestedCityElement p{
+    cursor: pointer;
+    margin: 0px;
+    position: relative;
+    font-family: raleway;
+    font-size: 14px;
+    top: 2.5vh;
+    transform: translateY(-50%);
+}
+.Response_SuggestedCityElement:hover{
+    background-color: lightgray;
+}
+#postAnnonce_citySuggestDepartmentDiv p{
+    font-family: Noto;
+    font-weight: 400;
+    font-size: 13px;
+    margin-right: 0.1vw;
+}
+#postAnnonce_researchCity{
+    border: solid 1px black;
+    border-radius: 15px;
+    width: 10vw;
+    height: 2vw;
+    font-size: 16px;
+    padding-left: 1vw;
+    grid-row: 1;
+}
+#postAnnonce_validateButton{
+    background-color: var(--mainColor);
+    width: 13vw;
+    height: 3.5vw;
+    border: none;
+    border-radius: 20px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    margin-top: 3vw;
+    margin-bottom: 2vw
+}
+.postAnnonce_cross{
+    width: 1.5vw;
+    position: absolute;
+    right: 2vw;
+    top: 2vw;
+}
+.postAnnonce_cross:hover{
+    background-color: rgba(175, 175, 175, 0.25);
+    border-radius: 50%;
+    padding: 0.5vw;
+    top: 1.5vw;
+    right: 1.5vw;
+}
+#postAnnonce_Title{
+    margin-left: 20vw;
+    transform: translateX(-50%);
+}
+.function_xssPrevent{
+    grid-row: 1;
+}
+#function_exclamationTitleDiv{
+    margin-left: -9.5vw;
+}
+.function_exclamationDiv{
+    grid-row: 1;
+}
+#postAnnonce_descriptionInput{
+}
+#function_exclamationdescriptionInputDiv{
+    margin-left: -15vw;
 }

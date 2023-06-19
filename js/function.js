@@ -19,7 +19,7 @@ async function getUserRate(Pseudo){
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('User')
     var result = await collection.find({username:Pseudo}).toArray()
-    if(result[0].hasOwnProperty('stars')){
+    if(result[0].stars != undefined){
         return result[0].stars
     }else{
         return undefined
@@ -190,6 +190,8 @@ async function checkConnection(req, res){
                     "session_ID.value":await generateSessionID()
                 }}
                 await changeDBValue('User',query,newValues)
+
+                return false
             }else{
                 req.session.pseudo = result[0].username
                 return true

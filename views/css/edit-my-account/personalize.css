@@ -14,8 +14,8 @@
 }
 .edit_validateButton{
     background-color: var(--mainColor);
-    width: 4vw;
-    height: 1.5vw;
+    width: 6vw;
+    height: 2vw;
     border: solid 1px black;
     border-radius: 20px;
     margin-left: 1vw;
@@ -33,7 +33,7 @@
 #edit_changeProfilePictureImg{
     border-radius: 50%;
     grid-row: 1;
-    width: 4vw;
+    width: 6vw;
     border: solid 2px black;
     aspect-ratio: 1/1;
     object-fit: cover;
@@ -52,13 +52,13 @@
 #edit_changeProfilePictureLabel{
     grid-row: 1;
     margin-left: 1vw;
-    height: 1vw;
+    height: 1.5vw;
     background-color: var(--buttonColor1);
     font-family: Raleway;
     font-weight: 600;
     padding: 0.5vw;
     border-radius: 15px;
-    width: 8vw;
+    width: 12vw;
     text-align: center;
 }
 #edit_ChangeProifileValidate{

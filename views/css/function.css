@@ -1,0 +1,23 @@
+.function_exclamationDiv p{
+    grid-column: 2;
+    grid-row: 1;
+    width: max-content;
+    position: absolute;
+    margin: 0px;
+    height: min-content;
+    margin-left: 2.5vw;
+    font-family: Raleway;
+    font-weight: bold;
+    background-color: lightcoral;
+    padding: 0.25vw;
+    border-radius: 10px;
+    font-size: 1vw;
+}
+.function_exclamationDiv img{
+    grid-row: 1;
+    grid-column: 1;
+    aspect-ratio: 1/1;
+    width: 2vw;
+    margin-left: 0.25vw;
+    position: absolute;
+}
