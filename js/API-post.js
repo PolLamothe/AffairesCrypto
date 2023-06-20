@@ -1,4 +1,4 @@
-module.exports = function(express, nodemailer){
+module.exports = function(express, nodemailer, upload){
     var _function = require('./function.js')
     
     express.post('/returnCityName', async function(req,res){
@@ -10,7 +10,7 @@ module.exports = function(express, nodemailer){
             }
             var name = result[i].Nom_commune
             var codePostal = result[i].Code_postal
-            treatedResult += `<div class='Response_SuggestedCityElement'><p>${name}(${codePostal})</p></div>`
+            treatedResult += `<div class='Response_SuggestedCityElement' id='${name}(${codePostal})'><p>${name}(${codePostal})</p></div>`
         }
         res.send(treatedResult)
     })
@@ -92,6 +92,55 @@ module.exports = function(express, nodemailer){
                             sameSite: 'lax',})
                         req.session.pseudo = username
                         res.redirect('/compte/'+await req.session.pseudo)
+                    }
+                }
+            }
+        }
+    })
+    express.post('/isCityValid',async function(req,res){
+        if(await _function.doesCityExist(req.body.city)){
+            res.send(true)
+        }else{
+            res.send(false)
+        }
+    })
+    express.post('/postAnnonce', upload.fields([
+        {name:'File1'},
+        {name:'File2'},
+        {name:'File3'},
+        {name:'File4'}
+    ]),async function(req,res){
+        var Title = req.body.Title  
+        var Description = req.body.description
+        var Price = req.body.Price
+        var City = req.body.city
+        if(await _function.checkConnection(req,res) != false){
+            if(Title != '' && Description != '' && Price != '' && City != ''){
+                if(_function.isXSSProof(Title) && _function.isXSSProof(Description) && _function.isXSSProof(Price) && _function.isXSSProof(City)){
+                    if(!(!req.files || Object.keys(req.files).length === 0)){ //si il y'a au moins un fichier qui a été upload
+                        for(var i=1;i<=4;i++){
+                            if(req.files['File'+i] == undefined){
+                            }else{
+                                for(var x=1;x<=4;x++){
+                                    if(i>x){
+                                        if(req.files['File'+x] == undefined){
+                                            req.files['File'+x] = req.files['File'+i]
+                                            req.files['File'+i] = undefined
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        var obj = {}
+                        var FileNumber = 0
+                        for(var i=1;i<=4;i++){
+                            if(req.files['File'+i] != undefined){
+                                obj['File'+i] = req.files['File'+i]
+                                FileNumber++
+                            }
+                        }   
+                        await _function.createNewPost(req.session.pseudo,Title,Description,Price,City,obj,FileNumber)
+                        res.redirect('/')
                     }
                 }
             }

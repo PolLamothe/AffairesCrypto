@@ -16,7 +16,7 @@ hr{
     float: left;
     height: 91.5vh;
     border-bottom: 0px;
-    background-color: rgb(245, 245, 245);
+    background-color: var(--mainColor25opacity);
 }
 .Sidebar_navButton{
     width: 100%;

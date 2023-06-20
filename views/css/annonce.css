@@ -1,0 +1,27 @@
+#annonce_mainContent{
+    border: solid 1px gray;
+    width: 80vw;
+    height: 80vh;
+    border-radius: 30px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1vw;
+}
+#annonce_titre{
+    font-family: Noto;
+    font-size: 25px;
+    margin-left: 15%;
+}
+#annonce_sliderDiv{
+    margin-left: 5vw;
+}
+.annonce_sliderPicture{
+    width: 100%;
+    object-fit: cover;
+    margin-top: 30vh;
+    transform: translateY(-50%);
+}
+.annonce_sliderPictureDiv{
+    width: 40vw;
+    height: 60vh;
+}

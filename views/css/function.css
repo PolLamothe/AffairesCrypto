@@ -1,3 +1,7 @@
+.function_exclamationDiv{
+    align-items: center;
+    display: flex;
+}
 .function_exclamationDiv p{
     grid-column: 2;
     grid-row: 1;

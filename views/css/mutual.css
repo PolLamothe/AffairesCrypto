@@ -2,8 +2,9 @@ body{
     margin: 0px;
     --mainColor:#57cc99;
     --mainColor50opacity: rgba(87, 204, 153,0.5);
+    --mainColor25opacity: rgba(87, 204, 153,0.25);
     --mainWeight:700;
-    --buttonColor1: #1DADF0;
+    --buttonColor1: hsl(199, 88%, 53%);
     --buttonColor2: #4180f5;
     overflow-x: hidden;
 }

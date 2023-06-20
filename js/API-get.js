@@ -62,4 +62,7 @@ module.exports = function(express, nodemailer){
             res.render('postAnnonce.ejs')
         }
     })
+    express.get('/annonce/:ID',function(req,res){
+        res.render('annonce.ejs')
+    })
 }

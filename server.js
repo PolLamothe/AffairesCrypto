@@ -14,12 +14,24 @@ app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-const upload = multer({ dest: 'uploads/' });
+
+// Définir l'emplacement de stockage pour les fichiers téléchargés
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/') // Le dossier où les fichiers uploadés seront sauvegardés
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname) // Utilisez le nom d'origine du fichier
+    }
+});
+
+// Instancier le middleware Multer
+const upload = multer({ storage: storage });
 
 app.set('view engine', 'ejs');//déclarer le moteur de rendue des fichiers .ejs
 app.use(express.static(__dirname + '/views')) //en sah je sais plus a quoi ça sert
 
-require('./js/API-post.js')(app, nodemailer)
+require('./js/API-post.js')(app, nodemailer, upload)
 require('./js/API-get.js')(app, nodemailer)
 require('./js/edit-my-account-API.js')(app, upload)
 app.listen(3000)

@@ -47,12 +47,15 @@
 }
 #compte_sendMessageButton{
     background-color: var(--buttonColor1);
+    font-size: 15px;
     border: none;
     border-radius: 15px;
     margin-top: -4vw;
     width: 12vw;
     height: 2vw;
     transform: translateX(-30%);
+    letter-spacing: 1px;
+    font-size: 600;
 }
 #compte_profileDiv p{
     font-family: Raleway;
@@ -85,7 +88,7 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--buttonColor2);
-    border: solid 1px grey;
+    border: none;
     font-size: 16px;
     border-radius: 20px;
     padding: 0.8vw;

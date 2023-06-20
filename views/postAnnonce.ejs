@@ -13,54 +13,57 @@
 <body>
     <%- include('./templates/header.ejs') %>
         <div id="postAnnonce_mainContentDiv">
-            <div style="display: grid;" id="postAnnonce_TitleGlobalDiv">
-                <input type="text" placeholder="Le titre de votre annonce" id="postAnnonce_Title" class="function_xssPrevent">
-                <div class="function_exclamationDiv" id="function_exclamationTitleDiv"></div>                     
-            </div>
-            <div id="postAnnonce_allPictureDiv">
-                <div id="postAnnonce_firstPictureDiv" class="postAnnonce_PictureDiv" style="grid-column: 1;">
-                    <img src="/assets/img/camera.png" id="postAnnonce_picture1" class="postAnnonce_Picture">
-                    <input class="postAnnonce_invisibleInput" type="file" accept=".jpg .jpeg, .png"
-                        id="postAnnonce_FileInput1">
-                    <img src="/assets/img/cross.png" class="postAnnonce_cross" id="postAnnonce_closingCross1">
-                    <p id="postAnnonce_firstPictureText" class="postAnnonce_PictureText">1er photo</p>
+            <form action="/postAnnonce" method="post" enctype="multipart/form-data">
+                <div style="display: grid;" id="postAnnonce_TitleGlobalDiv">
+                    <input type="text" placeholder="Le titre de votre annonce" id="postAnnonce_Title" class="function_xssPrevent" name="Title">
+                    <div class="function_exclamationDiv" id="function_exclamationTitleDiv"></div>                     
                 </div>
-                <div id="postAnnonce_secondPictureDiv" class="postAnnonce_PictureDiv" style="grid-column: 2;">
-                    <img src="/assets/img/camera.png" id="postAnnonce_picture2" class="postAnnonce_Picture">
-                    <input class="postAnnonce_invisibleInput" type="file" accept=".jpg, .jpeg, .png"
-                        id="postAnnonce_FileInput2">
-                    <img src="/assets/img/cross.png" class="postAnnonce_cross" id="postAnnonce_closingCross2">
-                    <p id="postAnnonce_firstPictureText" class="postAnnonce_PictureText">2ème photo</p>
-                </div>
-                <div id="postAnnonce_thirdPictureDiv" class="postAnnonce_PictureDiv" style="grid-column: 3;">
-                    <img src="/assets/img/camera.png" id="postAnnonce_picture3" class="postAnnonce_Picture">
-                    <input class="postAnnonce_invisibleInput" type="file" accept=".jpg, .jpeg, .png"
-                        id="postAnnonce_FileInput3">
-                    <img src="/assets/img/cross.png" class="postAnnonce_cross" id="postAnnonce_closingCross3">
-                    <p id="postAnnonce_firstPictureText" class="postAnnonce_PictureText">3ème photo</p>
-                </div>
-                <div id="postAnnonce_fourthPictureDiv" class="postAnnonce_PictureDiv" style="grid-column: 4;">
-                    <img src="/assets/img/camera.png" id="postAnnonce_picture4" class="postAnnonce_Picture">
-                    <input class="postAnnonce_invisibleInput" type="file" accept=".jpg, .jpeg, .png"
-                        id="postAnnonce_FileInput4">
-                    <img src="/assets/img/cross.png" class="postAnnonce_cross" id="postAnnonce_closingCross4">
-                    <p id="postAnnonce_firstPictureText" class="postAnnonce_PictureText">4ème photo</p>
-                </div>
-            </div>
-            <div style="display: grid;align-items: center;" id="postAnnonce_descriptionGlobalDiv">
-                <textarea placeholder="Description" id="postAnnonce_descriptionInput" class="function_xssPrevent"></textarea>
-                <div class="function_exclamationDiv" id="function_exclamationdescriptionInputDiv"></div>                     
-            </div>  
-            <div id="postAnnonce_Line1">
-                <input type="text" placeholder="Prix (€)" id="postAnnonce_priceInput">
-                <div id="postAnnonce_researchCityDiv">
-                    <input placeholder="Saisissez une ville" id="postAnnonce_researchCity"
-                        class="postAnnonce_researchArea">
-                    <div id="postAnnonce_citySuggestDiv" style="display: none;">
+                <div id="postAnnonce_allPictureDiv">
+                    <div id="postAnnonce_firstPictureDiv" class="postAnnonce_PictureDiv" style="grid-column: 1;">
+                        <img src="/assets/img/camera.png" id="postAnnonce_picture1" class="postAnnonce_Picture">
+                        <input class="postAnnonce_invisibleInput" type="file" accept=".jpg .jpeg, .png"
+                            id="postAnnonce_FileInput1" name="File1">
+                        <img src="/assets/img/cross.png" class="postAnnonce_cross" id="postAnnonce_closingCross1">
+                        <p id="postAnnonce_firstPictureText" class="postAnnonce_PictureText">1er photo</p>
+                    </div>
+                    <div id="postAnnonce_secondPictureDiv" class="postAnnonce_PictureDiv" style="grid-column: 2;">
+                        <img src="/assets/img/camera.png" id="postAnnonce_picture2" class="postAnnonce_Picture">
+                        <input class="postAnnonce_invisibleInput" type="file" accept=".jpg, .jpeg, .png"
+                            id="postAnnonce_FileInput2" name="File2">
+                        <img src="/assets/img/cross.png" class="postAnnonce_cross" id="postAnnonce_closingCross2">
+                        <p id="postAnnonce_firstPictureText" class="postAnnonce_PictureText">2ème photo</p>
+                    </div>
+                    <div id="postAnnonce_thirdPictureDiv" class="postAnnonce_PictureDiv" style="grid-column: 3;">
+                        <img src="/assets/img/camera.png" id="postAnnonce_picture3" class="postAnnonce_Picture">
+                        <input class="postAnnonce_invisibleInput" type="file" accept=".jpg, .jpeg, .png"
+                            id="postAnnonce_FileInput3" name="File3">
+                        <img src="/assets/img/cross.png" class="postAnnonce_cross" id="postAnnonce_closingCross3">
+                        <p id="postAnnonce_firstPictureText" class="postAnnonce_PictureText">3ème photo</p>
+                    </div>
+                    <div id="postAnnonce_fourthPictureDiv" class="postAnnonce_PictureDiv" style="grid-column: 4;">
+                        <img src="/assets/img/camera.png" id="postAnnonce_picture4" class="postAnnonce_Picture">
+                        <input class="postAnnonce_invisibleInput" type="file" accept=".jpg, .jpeg, .png"
+                            id="postAnnonce_FileInput4" name="File4">
+                        <img src="/assets/img/cross.png" class="postAnnonce_cross" id="postAnnonce_closingCross4">
+                        <p id="postAnnonce_firstPictureText" class="postAnnonce_PictureText">4ème photo</p>
                     </div>
                 </div>
-            </div>
-            <button id="postAnnonce_validateButton">Valider</button>
+                <div style="display: grid;align-items: center;" id="postAnnonce_descriptionGlobalDiv">
+                    <textarea placeholder="Description" id="postAnnonce_descriptionInput" class="function_xssPrevent" name="description"></textarea>
+                    <div class="function_exclamationDiv" id="function_exclamationdescriptionInputDiv"></div>                     
+                </div>  
+                <div id="postAnnonce_Line1">
+                    <input type="text" placeholder="Prix (€)" id="postAnnonce_priceInput" name="Price" class="function_xssPrevent">
+                    <div class="function_exclamationDiv" id="function_exclamationpriceInputDiv"></div>                     
+                    <div id="postAnnonce_researchCityDiv">
+                        <input placeholder="Saisissez une ville" id="postAnnonce_researchCity"
+                            class="postAnnonce_researchArea" name="city">
+                        <div id="postAnnonce_citySuggestDiv" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+                <button id="postAnnonce_validateButton">Valider</button>
+            </form>
         </div>
         <script src='/js/postAnnonce.js' type="module"></script>
 </body>

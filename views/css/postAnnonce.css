@@ -133,7 +133,7 @@
     border-radius: 15px;
     width: 10vw;
     height: 2vw;
-    font-size: 16px;
+    font-size: 14px;
     padding-left: 1vw;
     grid-row: 1;
 }
@@ -175,8 +175,10 @@
 .function_exclamationDiv{
     grid-row: 1;
 }
-#postAnnonce_descriptionInput{
-}
 #function_exclamationdescriptionInputDiv{
     margin-left: -15vw;
 }
+#function_exclamationpriceInputDiv{
+    margin-left: -7vw;
+    z-index: 100;
+}   

@@ -33,7 +33,8 @@ $('.postAnnonce_invisibleInput').on('input',function(event){
 
 $(document).click(function(event){
     var index_researchCity = $('#postAnnonce_researchCity')
-    if ((!index_researchCity.is(event.target) && !index_researchCity.has(event.target).length)) {
+    var postAnnonce_citySuggestDiv = $('#postAnnonce_citySuggestDiv')
+    if ((!index_researchCity.is(event.target) && !index_researchCity.has(event.target).length) && (!postAnnonce_citySuggestDiv.is(event.target) && !postAnnonce_citySuggestDiv.has(event.target).length)) {
         $('#postAnnonce_citySuggestDiv').css('display','none')
     }
 })
@@ -57,9 +58,46 @@ $("#postAnnonce_researchCity").on("input",function(){
                 $('#postAnnonce_citySuggestDiv').append(output)
             }
         })
+        $.ajax({
+            type:'POST',
+            url:'/isCityValid',
+            data:{city:$('#postAnnonce_researchCity').val()
+        
+            },
+            success:function(output){
+                if(output){
+                    console.log('working')
+                    $('#postAnnonce_researchCity').css('background-color','var(--mainColor)')
+                }else{
+                    $('#postAnnonce_researchCity').css('background-color','transparent')
+                }
+            }
+        })
     }else{
         $('div').remove(".Response_SuggestedCityElement")
     }
+})
+$('#postAnnonce_citySuggestDiv').on('click',function(event){
+    if(event.target.classList.contains("Response_SuggestedCityElement")){
+        var choice = event.target.id
+    }else{
+        var choice = $(event.target).parent()[0].id
+    }
+    $('#postAnnonce_researchCity').val(choice)
+    $('#postAnnonce_citySuggestDiv').css('display','none')
+    $.ajax({
+        type:'POST',
+        url:'/isCityValid',
+        data:{city:choice},
+        success:function(output){
+            if(output){
+                console.log('working')
+                $('#postAnnonce_researchCity').css('background-color','var(--mainColor)')
+            }else{
+                $('#postAnnonce_researchCity').css('background-color','transparent')
+            }
+        }
+    })
 })
 $('#postAnnonce_researchCity').on('click',function(){
     if($('#postAnnonce_researchCity').val() != ''){
@@ -69,7 +107,7 @@ $('#postAnnonce_researchCity').on('click',function(){
 })
 $('.postAnnonce_cross').on('click',function(event){
     var number = parseInt(event.target.id.replace('postAnnonce_closingCross',''))
-    $('#postAnnonce_FileInput1').val('')
+    $('#postAnnonce_FileInput'+number).val('')
     $('#postAnnonce_picture'+number).attr('src','/assets/img/camera.png')
 })
 $('.function_xssPrevent').on('input',function(event){

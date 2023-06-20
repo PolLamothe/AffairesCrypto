@@ -5,14 +5,26 @@ async function getClient(){
     return await MongoClient.connect(url)
 }
 
+function estSeulementDesLettres(chaine) {
+    return /^[a-zA-Z]+$/.test(chaine);
+}
+
+function isXSSProof(String){
+    return (!String.includes('<') && !String.includes('>'))
+}
+
 async function returnCityName(String){
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('AllFrenchCity')
 
-    const regex = new RegExp('^' + String, 'i'); 
+    if(estSeulementDesLettres(String)){
+        const regex = new RegExp('^' + String, 'i'); 
 
-    var result = await collection.find({Nom_commune:regex}).toArray()
-    return result
+        var result = await collection.find({Nom_commune:regex}).toArray()
+        return result
+    }else{
+        return ''
+    }
 }
 
 async function getUserRate(Pseudo){
@@ -213,7 +225,7 @@ function isPseudoValid(pseudo){
 
 function isEmailValid(email){
     if(email != ''){
-        return !email.includes('<') && !email.includes('>')
+        return !email.includes('<') && !email.includes('>') && email.includes('@')
     }else{
         return false
     }
@@ -327,6 +339,50 @@ async function changePseudo(oldPseudo, newPseudo){
     }})
 }
 
+async function doesCityExist(City){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('AllFrenchCity')
+    if(City.includes('(') || City.includes(')')){
+        City = City.split(')')
+        City.pop()
+        City = City.toString()
+        var array = City.split('(')
+        var result = await collection.find({Nom_commune : array[0],Code_postal : parseInt(array[1])}).toArray()
+        if(result.length != 0){
+            return true
+        }else{
+            return false
+        }
+    }else{
+        return false
+    }
+}
+
+async function createNewPost(pseudo,Title,Description,Price,City,File, FileNumber){
+    const fs = require('fs');
+    const mongodb = require('mongodb');
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('Annonce')
+
+    var Picture = {}
+    for(var i=1;i<=FileNumber;i++){
+        var file = File['File'+i][0]
+        var filePath = file.path;
+        var fileData = fs.readFileSync(filePath);
+        Picture['File'+i] = new mongodb.Binary(fileData)
+        fs.unlinkSync(filePath);
+    }
+    var obj = {
+        username : pseudo,
+        titre : Title,
+        description : Description,
+        prix : Price,
+        Ville : City,
+        Picture:Picture
+    }
+    await collection.insertOne(obj)
+}
+
 module.exports = {
     returnCityName,
     getUserRate,
@@ -354,4 +410,7 @@ module.exports = {
     storeFileAsBSON,
     getProfilePicture,
     changePseudo,
+    doesCityExist,
+    isXSSProof,
+    createNewPost,
 }
