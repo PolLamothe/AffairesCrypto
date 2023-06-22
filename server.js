@@ -7,6 +7,7 @@ var session = require('express-session')
 var cookieParser = require('cookie-parser');
 var nodemailer = require('nodemailer');
 const multer = require('multer');
+const querystring = require('querystring');
 
 var app = express()
 app.use(session({secret: "Secret",saveUninitialized:true,resave:false}));

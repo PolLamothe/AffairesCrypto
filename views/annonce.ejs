@@ -10,15 +10,42 @@
 <body>
     <%- include('./templates/header.ejs') %>
     <div id="annonce_mainContent">
-        <p id="annonce_titre">TITRE</p>
+        <p id="annonce_titre"><%- titre %></p>
         <div id="annonce_sliderDiv">
-            <div class="annonce_sliderPictureDiv" id="annoncesliderPicture1">
-                <img src="/assets/Test1.png" class="annonce_sliderPicture">
+            <% for(var i=1;i<=pictureNumber;i++){ %>
+                <div class="annonce_sliderPictureDiv" id="annonce_sliderPictureDiv<%- i %>">
+                    <img src="data:image/png;base64, <%- picture['File'+i] %>" class="annonce_sliderPicture">
+                    <% if(i == 1 && pictureNumber != 1){ %>
+                        <img src="/assets/img/arrow.png" class="annonce_rightArrow annonce_arrow" id="annonce_rightArrow<%- i %>">
+                    <% }else if(pictureNumber != 1){ %>
+                        <img src="/assets/img/arrow.png" class="annonce_leftArrow annonce_arrow" id="annonce_leftArrow<%- i %>">
+                    <% } %>
+                    <% if(i != pictureNumber && pictureNumber != 1){ %>
+                        <img src="/assets/img/arrow.png" class="annonce_rightArrow annonce_arrow" id="annonce_rightArrow<%- i %>">
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+        <div id="annonce_rightDiv">
+            <div id="annonce_profileDiv">
+                <p id="annonce_pseudo"><%- pseudo %></p>
+                <img src="data:image/png;base64, <%- profilePicture %>" id="annonce_profilePicture">
             </div>
-            <div class="annonce_sliderPictureDiv" id="annoncesliderPicture2">
-                <img src="/assets/Test2.png" class="annonce_sliderPicture">
+            <div id="annonce_rightDiv2">
+                <p id="annonce_prix"><%- prix %>€</p>
+            <button id="annonce_sendMessage">Envoyer un message</button>
             </div>
         </div>
+        <div style="display: grid;">
+            <div id="annonce_descriptionDiv">
+                <p id="annonce_descriptionTitle">Description</p>
+                <p id="annonce_descriptionText"><%- description %></p>
+            </div>
+            <div id="annonce_locationDiv">
+                <p id="annonce_locationTitle">Localisation</p>
+                <p id="annonce_locationText"><%- ville %></p>
+            </div>
+        </div>      
     </div>
     <script src="/js/annonce.js"></script>
 </body>

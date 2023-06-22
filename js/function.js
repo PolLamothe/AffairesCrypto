@@ -5,26 +5,16 @@ async function getClient(){
     return await MongoClient.connect(url)
 }
 
-function estSeulementDesLettres(chaine) {
-    return /^[a-zA-Z]+$/.test(chaine);
-}
-
 function isXSSProof(String){
     return (!String.includes('<') && !String.includes('>'))
 }
 
-async function returnCityName(String){
+async function returnCityName(Ville){
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('AllFrenchCity')
-
-    if(estSeulementDesLettres(String)){
-        const regex = new RegExp('^' + String, 'i'); 
-
-        var result = await collection.find({Nom_commune:regex}).toArray()
-        return result
-    }else{
-        return ''
-    }
+    var result = await collection.find({Nom_commune:{$regex:`^${Ville}`,$options:'i'}}).toArray()
+    return result
+    
 }
 
 async function getUserRate(Pseudo){
@@ -363,7 +353,6 @@ async function createNewPost(pseudo,Title,Description,Price,City,File, FileNumbe
     const mongodb = require('mongodb');
     var client = await getClient()
     var collection = client.db('AffairesCrypto').collection('Annonce')
-
     var Picture = {}
     for(var i=1;i<=FileNumber;i++){
         var file = File['File'+i][0]
@@ -372,15 +361,86 @@ async function createNewPost(pseudo,Title,Description,Price,City,File, FileNumbe
         Picture['File'+i] = new mongodb.Binary(fileData)
         fs.unlinkSync(filePath);
     }
+    var Departement = City.split('(')
+    Departement = Departement[1].split('')
+    Departement = Departement[0]+Departement[1]
+    Price = parseInt(Price)
     var obj = {
         username : pseudo,
         titre : Title,
         description : Description,
         prix : Price,
         Ville : City,
-        Picture:Picture
+        Picture:Picture,
+        Departement : Departement
     }
     await collection.insertOne(obj)
+}
+async function getPostData(id){
+    const {mongodb, ObjectId } = require('mongodb');
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('Annonce')
+    var result = await collection.find({_id: new ObjectId(id)}).toArray()
+    return result[0]
+}
+
+async function getAllUserPost(pseudo){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('Annonce')
+    var result = await collection.find({username : pseudo}).toArray()
+    return result
+}
+
+async function getDataFromSearch(keyword, location, departmentToggle,minPrice,maxPrice){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('Annonce')
+    if(minPrice == undefined || minPrice == ''){
+        minPrice = 0
+    }else{
+        minPrice = parseInt(minPrice)
+    }
+    if(maxPrice == undefined || maxPrice == ''){
+        maxPrice = 99999999
+    }else{
+        maxPrice = parseInt(maxPrice)
+    }
+    if(departmentToggle == 'true'){
+        location = location.split('(')
+        location = location[1][0] + location[1][1]
+    }
+    var tempKeyword = keyword.split(' ')
+    var result = []
+    for(var i =0;i<tempKeyword.length;i++){
+        if(departmentToggle == 'true'){
+            var temp = await collection.find({
+                $or:[{
+                    "titre" : {
+                        $regex : tempKeyword[i],
+                        $options : 'i'
+                    }},{
+                    "description" : {
+                        $regex : tempKeyword[i],
+                        $options : 'i'
+                    }}
+                ],
+                prix:{
+                    $gt : minPrice,
+                    $lt : maxPrice
+                },
+                Departement: location.toString(),
+            }).toArray()
+            for(var x=0;x<temp.length;x++){
+                if(!result.includes(temp[x])){
+                    result.push(temp[x])
+                }
+            }
+            console.log(result.length)
+            console.log(temp.length)
+        }else{ 
+
+        }
+    }
+    return result
 }
 
 module.exports = {
@@ -413,4 +473,7 @@ module.exports = {
     doesCityExist,
     isXSSProof,
     createNewPost,
+    getPostData,
+    getAllUserPost,
+    getDataFromSearch,
 }

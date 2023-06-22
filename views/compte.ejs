@@ -45,6 +45,9 @@
             <%- include('./templates/compte_editButton.ejs') %>
         <% } %>
     </div>
+    <% for(var i =1;i<= allUserPost.length;i++){ %>
+        <%- include('./templates/postPreview.ejs', {allUserPost:allUserPost,i:i}) %>
+    <% } %>
     <script src="/js/compte.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+<div class="postPreview_global" id="<%- allUserPost[i-1]._id %>">
+    <p class="postPreview_title" id="<%- allUserPost[i-1]._id %>"><%- allUserPost[i-1].titre %></p>
+    <img src="data:image/png;base64,<%- allUserPost[i-1].Picture.File1 %>" class="postPreview_previewImage" id="<%- allUserPost[i-1]._id %>">
+    <p class="postPreview_prix" id="<%- allUserPost[i-1]._id %>"><%- allUserPost[i-1].prix %> €</p>
+    <p class="postPreview_username" id="<%- allUserPost[i-1]._id %>"><%- allUserPost[i-1].username %></p>
+    <p class="postPreview_City" id="<%- allUserPost[i-1]._id %>"><%- allUserPost[i-1].Ville %></p>
+</div>
+<script src="/js/postPreview.js"></script>
+<link href="/css/postPreview.css" rel="stylesheet">

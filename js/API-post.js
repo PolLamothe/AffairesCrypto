@@ -2,6 +2,7 @@ module.exports = function(express, nodemailer, upload){
     var _function = require('./function.js')
     
     express.post('/returnCityName', async function(req,res){
+        req.body.userInput = req.body.userInput.split('(')[0]
         var result = await _function.returnCityName(req.body.userInput)
         var treatedResult = ''
         for(var i = 0;i<result.length;i++){

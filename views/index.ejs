@@ -14,7 +14,7 @@
     <p id="index_slogan">Achetez des biens et des services entre particuliers, le tout, en crypto monnaie</p>
     <div id="index_researchDiv">
         <div id="index_researchParamsInputDiv">
-            <input type="text" placeholder="Que recherchez-vous ?" class="index_researchArea">
+            <input type="text" placeholder="Que recherchez-vous ?" class="index_researchArea" id="index_researchItem">
             <div id="index_researchCityDiv">
                 <input placeholder="Saisissez une ville" id="index_researchCity" class="index_researchArea">
                 <div id="index_citySuggestDiv" style="display: none;">
@@ -27,14 +27,14 @@
         </div>
         <div id="index_researchButtonDiv">
             <button id="index_researchButtonSearch">Rechercher</button>
-            <div id="index_researchPriceDiv">
-                <button id="index_researchButtonPrice">Prix</button>
-                <div id="index_PriceRangeDiv">
-                    <p style="grid-column: 1;">Min :</p>
-                    <input type="text" style="grid-column: 2;">
-                    <p style="grid-column: 3;">€ - Max :</p>
-                    <input type="text" style="grid-column: 4;">
-                    <p style="grid-column: 5;">€</p>
+            <div id="index_researchPriceDiv" class="index_researchButtonPriceClass">
+                <button id="index_researchButtonPrice" class="index_researchButtonPriceClass">Prix</button>
+                <div id="index_PriceRangeDiv" class="index_researchButtonPriceClass">
+                    <p style="grid-column: 1;" class="index_researchButtonPriceClass">Min :</p>
+                    <input type="text" style="grid-column: 2;" id="index_minPrice" class="index_researchButtonPriceClass">
+                    <p style="grid-column: 3;" class="index_researchButtonPriceClass">€ - Max :</p>
+                    <input type="text" style="grid-column: 4;" id="index_maxPrice" class="index_researchButtonPriceClass">
+                    <p style="grid-column: 5;" class="index_researchButtonPriceClass">€</p>
                 </div>
             </div>
         </div>      

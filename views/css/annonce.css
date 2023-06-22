@@ -1,27 +1,206 @@
 #annonce_mainContent{
     border: solid 1px gray;
     width: 80vw;
-    height: 80vh;
+    height: fit-content;
     border-radius: 30px;
     margin-left: 50%;
     transform: translateX(-50%);
-    margin-top: 1vw;
+    margin-top: 1.5vw;
 }
 #annonce_titre{
     font-family: Noto;
     font-size: 25px;
-    margin-left: 15%;
+    margin-left: 30%;
 }
 #annonce_sliderDiv{
     margin-left: 5vw;
+    height: 25vw;
 }
 .annonce_sliderPicture{
     width: 100%;
     object-fit: cover;
-    margin-top: 30vh;
+    margin-top: 12.5vw;
     transform: translateY(-50%);
+    max-height: 100%;
+    object-fit: contain;
 }
 .annonce_sliderPictureDiv{
     width: 40vw;
-    height: 60vh;
+    height: 25vw;
+    position: relative;
+}
+.annonce_arrow{
+    width: 4vw;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%)
+}
+.annonce_rightArrow{
+    right: 0px;
+}
+.annonce_leftArrow{
+    left: 0px;
+    transform: translateY(-50%) scale(-1)!important;
+}
+.annonce_arrow:hover{
+    background-color: rgba(127,127,127,0.6);
+    border-radius: 50%;
+}
+#annonce_rightDiv{
+    position: absolute;
+    right: 10vw;
+    top: 5vw;
+}
+#annonce_profilePicture{
+    width: 8vw;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+#annonce_profileDiv{
+    display: flex;
+    align-items: center;
+    margin-left: 6vw;
+}
+#annonce_pseudo{
+    font-family: Raleway;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0px;
+    margin-right: 1.5vw;
+    margin-top: -1vw;
+    grid-row: 1;
+}
+#annonce_prix{
+    font-family: Noto;
+    font-weight: 600;
+    margin: 0px;
+    width: fit-content;
+    grid-row: 1;
+    transform: translateY(25%);
+    margin-right: 2vw;
+}
+#annonce_rightDiv2{
+    position: relative;
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    padding: 2vw;
+    display: grid;
+    width: fit-content;
+    align-items: center;
+    margin-top: 5vw;
+    margin-right: -5vw;
+}
+#annonce_sendMessage{
+    width: 15vw;
+    background-color: var(--mainColor);
+    border: none;
+    height: 4vw;
+    border-radius: 20px;
+    font-size: 16px;
+    grid-row: 1;
+    font-family: Raleway;
+    font-weight: 600;
+}
+#annonce_descriptionDiv{
+    width: 45vw;
+    grid-row: 1;
+}
+#annonce_descriptionTitle{
+    font-family: Raleway;
+    font-weight: 600;
+    margin-left: 7vw;
+    font-size: 20px;
+}
+#annonce_descriptionText{
+    font-family: 'Helvetica', Arial, Lucida Grande, sans-serif;
+    border: solid 1px lightgray;
+    border-radius: 30px;
+    padding: 2vw;
+    margin-left: 4vw;
+    font-size: 18px;
+    white-space:pre-wrap;
+}
+#annonce_locationDiv{
+    grid-row: 1;
+}
+#annonce_locationText{
+    font-family: 'Helvetica', Arial, Lucida Grande, sans-serif;
+    font-size: 18px;
+}
+#annonce_locationTitle{
+    font-family: Raleway;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+
+
+.sliderPictureGoLeft{
+    animation: sliderPictureGoLeft 1s;
+    animation-fill-mode: forwards;
+    position: absolute;
+}
+@keyframes sliderPictureGoLeft {
+    0%{
+        transform: translateX(0%);
+        filter: opacity(1);
+        display: inline;
+    }
+    100%{
+        transform: translateX(-100%);
+        filter: opacity(0);
+        display: none;
+    }
+}
+.sliderPictureComeLeft{
+    animation: sliderPictureComeLeft 1s;
+    animation-fill-mode: forwards;
+    position: absolute;
+}
+@keyframes sliderPictureComeLeft {
+    0%{
+        transform: translateX(-100%);
+        filter: opacity(0);
+        display: none;
+    }
+    100%{
+        transform: translateX(0%);
+        filter: opacity(1);
+        display: inline;
+    }
+}
+.sliderPictureGoRight{
+    animation: sliderPictureGoRight 1s;
+    animation-fill-mode: forwards;
+    position: absolute;
+}
+@keyframes sliderPictureGoRight {
+    0%{
+        transform: translateX(0%);
+        filter: opacity(1);
+        display: inline;
+    }
+    100%{
+        transform: translateX(100%);
+        filter: opacity(0);
+        display: none;
+    }
+}
+.sliderPictureComeRight{
+    animation: sliderPictureComeRight 1s;
+    animation-fill-mode: forwards;
+    position: absolute;
+}
+@keyframes sliderPictureComeRight {
+    0%{
+        transform: translateX(100%);
+        filter: opacity(0);
+        display: none;
+    }
+    100%{
+        transform: translateX(0%);
+        filter: opacity(1);
+        display: inline;
+    }
 }

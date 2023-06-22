@@ -66,7 +66,6 @@ $("#postAnnonce_researchCity").on("input",function(){
             },
             success:function(output){
                 if(output){
-                    console.log('working')
                     $('#postAnnonce_researchCity').css('background-color','var(--mainColor)')
                 }else{
                     $('#postAnnonce_researchCity').css('background-color','transparent')
