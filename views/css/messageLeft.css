@@ -1,0 +1,6 @@
+#messageLeft_mainContent{
+    width: 25vw;
+    border-right: solid 1px grey;
+    height: 100vh;
+    margin-top: -10px;
+}

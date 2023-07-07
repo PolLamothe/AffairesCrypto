@@ -327,6 +327,10 @@ async function changePseudo(oldPseudo, newPseudo){
     collection.updateOne({username: oldPseudo},{$set:{
         username: newPseudo
     }})
+    var collection = client.db('AffairesCrypto').collection('Annonce')
+    collection.updateMany({username: oldPseudo},{$set:{
+        username: newPseudo
+    }})
 }
 
 async function doesCityExist(City){
@@ -430,17 +434,65 @@ async function getDataFromSearch(keyword, location, departmentToggle,minPrice,ma
                 Departement: location.toString(),
             }).toArray()
             for(var x=0;x<temp.length;x++){
-                if(!result.includes(temp[x])){
+                presenceState = undefined
+                for(var y=0;y<result.length;y++){
+                    if(temp[x]._id.equals(result[y]._id)){
+                        presenceState = true
+                    }else if(presenceState != true){
+                        presenceState = false
+                    }
+                }
+                if(presenceState != true){
                     result.push(temp[x])
                 }
             }
-            console.log(result.length)
-            console.log(temp.length)
         }else{ 
-
+            var temp = await collection.find({
+                $or:[{
+                    "titre" : {
+                        $regex : tempKeyword[i],
+                        $options : 'i'
+                    }},{
+                    "description" : {
+                        $regex : tempKeyword[i],
+                        $options : 'i'
+                    }}
+                ],
+                prix:{
+                    $gt : minPrice,
+                    $lt : maxPrice
+                },
+                Ville: location.toString(),
+            }).toArray()
+            for(var x=0;x<temp.length;x++){
+                presenceState = undefined
+                for(var y=0;y<result.length;y++){
+                    if(temp[x]._id.equals(result[y]._id)){
+                        presenceState = true
+                    }else if(presenceState != true){
+                        presenceState = false
+                    }
+                }
+                if(presenceState != true){
+                    result.push(temp[x])
+                }
+            }
         }
     }
     return result
+}
+
+async function getUserMessagesList(pseudo){
+    var client = await getClient()
+    var collection = client.db('AffairesCrypto').collection('Annonce')
+    var result = collection.find({$or:[
+        {user1:pseudo},
+        {user2:pseudo}
+    ]})
+}
+
+async function getMessagePreview(ID){
+    
 }
 
 module.exports = {
@@ -476,4 +528,5 @@ module.exports = {
     getPostData,
     getAllUserPost,
     getDataFromSearch,
+    getUserMessagesList,
 }

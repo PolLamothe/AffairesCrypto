@@ -2,6 +2,7 @@ module.exports = function(express, nodemailer){
     var _function = require('./function.js')
 
     express.get('/',async function(req,res){
+        console.log('connection')
         res.render('index.ejs')
     })
     express.get('/mon-compte',async function(req,res){
@@ -96,6 +97,11 @@ module.exports = function(express, nodemailer){
             }
         }else{
             res.redirect('/')
+        }
+    })
+    express.get('/message',async function(req,res){
+        if(_function.checkConnection(req,res)){
+            res.render('message.ejs')
         }
     })
 }

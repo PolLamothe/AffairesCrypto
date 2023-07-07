@@ -7,3 +7,6 @@ $('#header_profileDiv').on('click',function(){
 $('#header_createButton').on('click',function(){
     document.location = '/postAnnonce'
 })
+$('#header_messageDiv').on('click',function(){
+    document.location = '/message'
+})
